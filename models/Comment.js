@@ -18,17 +18,20 @@ Comment.init(
         user_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: `User`,
+                model: `Users`,
                 key: `id`
             }
         },
         post_id: {
             type: DataTypes.INTEGER,
             references: {
-                model: `Post`,
+                model: `Posts`,
                 key: `id`
             }
         }
+    },
+    {
+        sequelize
     }
 )
 
