@@ -45,8 +45,9 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// POST route for user logout
+// DELETE route for user logout
 router.delete('/logout', (req, res) => {
+    console.log('Session before destroy:', req.session);
     if (req.session) {
         req.session.destroy((err) => {
             if (err) {
@@ -55,6 +56,8 @@ router.delete('/logout', (req, res) => {
                 res.status(500).json({ message: 'Error during logout' });
             } else {
                 // logout successful
+                res.clearCookie(`connect.sid`, { path: '/', maxAge: 0, expires: new Date(0) })
+                console.log('Session after destroy:', req.session);
                 res.status(200).json({ message: 'Logout Successful' });
             }
         });
