@@ -25,6 +25,13 @@ Post.init(
                 model: `Users`,
                 key: `id`
             }
+        },
+        nice_date: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+            get() {
+                return this.getDataValue("nice_date").toLocaleDateString();
+            }
         }
     },
     {
