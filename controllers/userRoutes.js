@@ -19,31 +19,28 @@ router.post(`/`, (req, res) => {
 });
 
 // POST route for user login
-router.post('/login', async (req, res) => {
-    try {
-        const foundUser = await User.findOne({
+router.post('/login',(req, res) => {
+        User.findOne({
             where: {
                 username: req.body.username, // Assuming username is used for login
             }
-        });
-
-        if (!foundUser) {
-            return res.status(401).json({ message: 'Incorrect username or password!' });
-        } else if (!foundUser.checkPassword(req.body.password)) {
-            return res.status(401).json({ message: 'Incorrect username or password!' });
-        }
-
-        req.session.user = {
-            id: foundUser.id,
-            username: foundUser.username
-        };
-
-        res.json({ userId: req.session.user.id, username: req.session.user.username });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
+        }).then(foundUser => {
+            if (!foundUser) {
+                return res.status(401).json({ message: 'Incorrect username or password!' });
+            } else if (!foundUser.checkPassword(req.body.password)) {
+                return res.status(401).json({ message: 'Incorrect username or password!' });
+            }
+    
+            req.session.user = {
+                id: foundUser.id,
+                username: foundUser.username
+            };
+    
+            res.json({ userId: req.session.user.id, username: req.session.user.username });
+        }).catch(err => {
+            res.status(500).json({msg:"Server error!", err})
+        })
+    });
 
 // DELETE route for user logout
 router.delete('/logout', (req, res) => {

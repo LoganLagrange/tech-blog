@@ -11,9 +11,9 @@ router.get("/", (req, res) => {
     }).then(dbPost => {
         const hbsPosts = dbPost.map((post) => post.toJSON());
         let isLoggedIn = false
-        // if (res.session.user) {
-            // isLoggedIn = true;
-        // }
+        if (req.session.user) {
+            isLoggedIn = true;
+        }
 
         res.render("home", {
             loggedIn: isLoggedIn,
