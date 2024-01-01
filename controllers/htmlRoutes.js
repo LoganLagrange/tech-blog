@@ -22,4 +22,29 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get('/login', (req, res) => {
+    if(req.session.user) {
+        res.redirect("/dashboard");
+    } else {
+        res.render("auth", {
+            isLogin: true,
+            loggedIn: false
+        })
+    }
+})
+
+router.get('/signup', (req, res) => {
+    if(req.session.user) {
+        res.redirect("/dashboard");
+    } else {
+        res.render("auth", {
+            isLogin: false,
+            loggedIn: false
+        })
+    }
+})
+
+router.get("/dashboard", (req, res) => {
+    
+})
 module.exports = router;

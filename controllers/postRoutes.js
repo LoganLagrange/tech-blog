@@ -10,4 +10,17 @@ router.get(`/`, (req,res)  => {
     })
 })
 
+// GET route for all post owner by a given user
+router.get("/userposts/:id", (req, res) => {
+    Post.findAll({
+        where: {
+            postId: req.params.id
+        }
+    }).then(dbPost => {
+        res.json(dbPost);
+    }).catch(err => {
+        res.status(500).json({msg:`Server error!`, err})
+    })
+})
+
 module.exports = router;
