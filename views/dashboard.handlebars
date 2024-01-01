@@ -1,9 +1,11 @@
 <div class="your-posts-div">
-    <div class="your-post-card">
+    {{#each posts}}
+    <div class="post-card">
         <h3>{{title}}</h3>
         <p>Posted by:{{User.username}} on {{nice_date}}</p>
         <p>{{contents}}</p>
     </div>
+    {{/each}}
 </div>
 <button id="new-post-btn">New Post</button>
 <script src="/js/dashboard.js"></script>

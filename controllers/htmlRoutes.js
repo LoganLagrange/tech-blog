@@ -45,6 +45,20 @@ router.get('/signup', (req, res) => {
 })
 
 router.get("/dashboard", (req, res) => {
-    
+    Post.findAll({
+        where: {
+            userId: req.session.user.id
+        }
+    }).then(dbPosts => {
+        if(!req.session.user) {
+            res.redirect("/")
+        } else {
+            res.render("dashboard", {
+                loggedIn: true,
+                posts: dbPosts
+            })
+        }
+        
+    })
 })
 module.exports = router;
