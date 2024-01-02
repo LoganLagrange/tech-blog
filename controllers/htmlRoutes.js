@@ -48,7 +48,7 @@ router.get("/dashboard", (req, res) => {
     console.log(req.session.user.id)
     Post.findAll({
         where: {
-            userId: req.session.user.id
+            user_id: req.session.user.id
         },
         include: [{
             model: User,
@@ -66,5 +66,16 @@ router.get("/dashboard", (req, res) => {
         }
         
     })
+})
+
+router.get('/new_post', (req, res) => {
+    if(!req.session.user) {
+        res.redirect("/login");
+    } else {
+        res.render("new_post", {
+            isLogin: false,
+            loggedIn: true
+        })
+    }
 })
 module.exports = router;
