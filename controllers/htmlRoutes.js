@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
         if (req.session.user) {
             isLoggedIn = true;
         }
-
+        console.log(isLoggedIn)
         res.render("home", {
             loggedIn: isLoggedIn,
             posts: hbsPosts
@@ -45,17 +45,23 @@ router.get('/signup', (req, res) => {
 })
 
 router.get("/dashboard", (req, res) => {
+    console.log(req.session.user.id)
     Post.findAll({
         where: {
             userId: req.session.user.id
-        }
+        },
+        include: [{
+            model: User,
+            attributes: ["username"]
+        }]
     }).then(dbPosts => {
+        const hbsPosts = dbPosts.map((post) => post.toJSON());
         if(!req.session.user) {
             res.redirect("/")
         } else {
             res.render("dashboard", {
                 loggedIn: true,
-                posts: dbPosts
+                posts: hbsPosts
             })
         }
         
