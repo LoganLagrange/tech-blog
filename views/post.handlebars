@@ -1,11 +1,7 @@
 <div class="card-box">
-    {{#each posts}}
-    <div class="post-card" data-post-id="{{id}}">
+    <div class="post-card">
         <h3>{{title}}</h3>
         <p>Posted by: {{User.username}} on {{nice_date}}</p>
         <p>{{contents}}</p>
     </div>
-    {{/each}}
 </div>
-
-<script src="/js/clickPost.js"></script>

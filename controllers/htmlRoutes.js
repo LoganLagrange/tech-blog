@@ -78,4 +78,19 @@ router.get('/new_post', (req, res) => {
         })
     }
 })
+
+router.get('/post/:postId', (req, res) => {
+    const postId = req.params.postId;
+
+    Post.findByPk(postId, {
+        include: [{
+            model: User,
+            attributes: ["username"]
+        }]
+    })
+    .then(post => {
+        res.render('comment', post.toJSON())
+    })
+})
+
 module.exports = router;
