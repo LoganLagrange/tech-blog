@@ -17,6 +17,7 @@ document.getElementById("new-post-form").addEventListener("submit", e => {
         body: JSON.stringify(newPost)
     }).then(res => {
         res.json()
+        window.location.href = "/dashboard"
     }).catch(err => {
         console.error("Error!", err)
     })
