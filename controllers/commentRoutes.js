@@ -4,12 +4,15 @@ const {Comment, User} = require(`../models`);
 
 // CREATE new comment
 router.post('/', (req, res) => {
-    console.log(req.body)
-    Comment.create({
-        contents: req.body.contents,
-        user_id: req.session.user.id,
-        post_id: req.body.postId
+    User.findByPk(req.session.user.id, {attributes: ['id', 'username', ]})
+    .then(user => {
+        return Comment.create({
+            contents: req.body.contents,
+            user_id: req.session.user.id,
+            post_id: req.body.postId
+        })
     }).then(newComment => {
+        console.log('new comment,', newComment.toJSON())
         res.json(newComment);
     }).catch(err => {
         res.status(500).json({msg:`Server error!`, err});

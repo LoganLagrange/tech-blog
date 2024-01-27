@@ -100,6 +100,7 @@ router.get('/post/:postId', (req, res) => {
         }).then(comments => {
             const hbsComments = comments.map((comment) => comment.toJSON());
             const hbsPost = post.toJSON()
+            console.log(hbsComments)
             res.render('comment', {
                 post: hbsPost,
                 comments: hbsComments
