@@ -6,7 +6,7 @@ const {Comment, User} = require(`../models`);
 router.get(`/onpost/:id`, (req,res) => {
     Comment.findAll({
         where: {
-            postId: req.params.id
+            post_id: req.params.id
         },
         include:[{
             model: User,
@@ -18,5 +18,18 @@ router.get(`/onpost/:id`, (req,res) => {
         res.status(500).json({msg:`Server error!`, err});
     })
 });
+
+// CREATE new comment
+router.post('/', (req, res) => {
+    Comment.create({
+        contents: req.body.contents,
+        user_id: req.session.user.id,
+        post_id: req.body.postId
+    }).then(newComment => {
+        res.json(newComment);
+    }).catch(err => {
+        res.status(500).json({msg:`Server error!`, err});
+    })
+})
 
 module.exports = router;

@@ -3,8 +3,10 @@
         <h3>{{title}}</h3>
         <p>Posted by: {{User.username}} on {{nice_date}}</p>
         <p>{{contents}}</p>
+        <p>Comments:</p>
+        <p></p>
     </div>
-    <div>
+    <div class="comment-card">
         <p>Comment</p>
         <form id="comment-form">
             <input type="text-area" id="comment-contents">
@@ -12,3 +14,5 @@
         </form>
     </div>
 </div>
+
+<script src="/public/js/comment.js"></script>
