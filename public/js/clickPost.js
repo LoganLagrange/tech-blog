@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < postDivs.length; i++) {
         postDivs[i].addEventListener('click', e => {
             const postId = e.target.dataset.postId;
+            sessionStorage.setItem("currentPost", postId)
             if (postId) {
                 window.location.href = `/post/${postId}`;
             }

@@ -89,7 +89,23 @@ router.get('/post/:postId', (req, res) => {
         }]
     })
     .then(post => {
-        res.render('comment', post.toJSON())
+        Comment.findAll({
+            where:{
+                post_id:post.id
+            },
+            include: [{
+                model: User,
+                attributes: ["username"]
+        }]
+        }).then(comments => {
+            const hbsComments = comments.map((comment) => comment.toJSON());
+            const hbsPost = post.toJSON()
+            res.render('comment', {
+                post: hbsPost,
+                comments: hbsComments
+            })
+        })
+        
     })
 })
 

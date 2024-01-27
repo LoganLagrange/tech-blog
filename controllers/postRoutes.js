@@ -1,6 +1,6 @@
 const express = require(`express`);
 const router = express.Router();
-const {Post} = require(`../models`);
+const {Post, Comment} = require(`../models`);
 
 router.get(`/`, (req,res)  => {
     Post.findAll().then(dbPost => {

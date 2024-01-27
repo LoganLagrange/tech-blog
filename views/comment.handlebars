@@ -1,13 +1,17 @@
 <div class="card-box">
     <div class="post-card">
-        <h3>{{title}}</h3>
-        <p>Posted by: {{User.username}} on {{nice_date}}</p>
-        <p>{{contents}}</p>
-        <p>Comments:</p>
-        <p></p>
+        <h3>{{post.title}}</h3>
+        <p>Posted by: {{post.User.username}} on {{post.nice_date}}</p>
+        <p>{{post.contents}}</p>
     </div>
     <div class="comment-card">
-        <p>Comment</p>
+        <p>Comments:</p>
+        {{#each comments}}
+        <div class="comment">
+            <p>Posted by: {{User.username}}</p>
+            <p>{{contents}}</p>
+        </div>
+        {{/each}}
         <form id="comment-form">
             <input type="text-area" id="comment-contents">
             <button id="comment-button">Submit</button>
@@ -15,4 +19,4 @@
     </div>
 </div>
 
-<script src="/public/js/comment.js"></script>
+<script src="/js/comment.js"></script>
