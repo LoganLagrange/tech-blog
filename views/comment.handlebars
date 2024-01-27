@@ -12,10 +12,13 @@
             <p>{{contents}}</p>
         </div>
         {{/each}}
+        {{#if loggedIn}}
         <form id="comment-form">
             <input type="text-area" id="comment-contents">
             <button id="comment-button">Submit</button>
         </form>
+        {{else}}
+        {{/if}}
     </div>
 </div>
 

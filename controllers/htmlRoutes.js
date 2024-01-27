@@ -100,8 +100,14 @@ router.get('/post/:postId', (req, res) => {
         }).then(comments => {
             const hbsComments = comments.map((comment) => comment.toJSON());
             const hbsPost = post.toJSON()
-            console.log(hbsComments)
+            let loggedIn
+            if(req.session.user) {
+                loggedIn = true
+            } else (
+                loggedIn = false
+            )
             res.render('comment', {
+                loggedIn: loggedIn,
                 post: hbsPost,
                 comments: hbsComments
             })

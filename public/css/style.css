@@ -1,0 +1,90 @@
+body, h1, h2, h3, p, ul, li, figure, figcaption, div {
+    margin: 0;
+    padding: 0;
+  }
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: darkblue;
+    color: white;
+    width: 100vw;
+    padding-left: 5;
+}
+
+h1 {
+    padding: 10;
+    padding-right: 20
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+a {
+    color:inherit;
+    padding: 5;
+}
+
+.card-box {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+}
+
+.your-posts-div {
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+}
+
+.post-card {
+    border: solid black 1px;
+    margin: 10px;
+    flex-shrink: 1;
+    width: max-content;
+    display: inline-block;
+}
+
+.post-card h3 {
+    background-color: darkblue;
+    color: white;
+    margin: 0;
+    padding: 5;
+}
+
+.post-card p {
+    margin: 5;
+}
+
+button {
+    padding: 5px;
+    margin: 10px;
+}
+
+form {
+    margin: 10px;
+}
+
+.comment{
+    border: solid darkblue 5px;
+    margin: 10px;
+    flex-shrink: 1;
+    width: max-content;
+    display: inline-block;
+}
+
+.comment p {
+    margin: 5;
+}
+
+.comment-card {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+}
